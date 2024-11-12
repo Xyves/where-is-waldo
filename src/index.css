@@ -130,3 +130,6 @@ html {
 #container {
   height: 100%;
 }
+.game {
+  cursor: url('public/dual-circle-crosshairs-hi.png');
+}
