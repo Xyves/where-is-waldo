@@ -5,6 +5,9 @@ export default {
   theme: {
     extend: {
       backgroundImage: { background: "url('/public/main-robotcity.webp')" }
+    },
+    fontFamily: {
+      footer: ['Sixtyfour Convergence', 'sans-serif']
     }
   },
   plugins: []
