@@ -17,7 +17,7 @@ type Coords = {
 export async function fetch3Characters() {
   try {
     const response = await fetch(
-      'https://where-is-waldo-backend-production-9a1d.up.railway.app',
+      'https://where-is-waldo-backend-production-9a1d.up.railway.app/api/characters',
       { method: 'GET', headers: { 'Content-Type': 'application/json' } }
     )
     const data = await response.json()
