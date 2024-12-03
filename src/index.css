@@ -130,10 +130,14 @@ html {
   margin: 0;
   overflow-x: hidden;
 }
-#container {
-  height: 100%;
-}
 
 .game {
   cursor: url('public/dual-circle-crosshairs-hi.png');
+  background-image: url('/main-robotcity.webp');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

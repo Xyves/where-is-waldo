@@ -4,19 +4,21 @@ import React, { useState } from 'react'
 export default function ModalMenu({ toggleState }) {
   const { characters, loading, error } = useCharacters()
   return (
-    <ul className=" absolute grid h-64 w-72 grid-cols-1 grid-rows-3 bg-blue-900 p-4">
-      <form action="">
+    <ul className=" absolute  bg-blue-900 p-4">
+      <form action="" className="flex flex-col p-2 ">
         {characters?.map((character) => (
           <li
-            className="flex items-center  rounded-lg bg-red-300 "
+            className="mb-3 flex flex-col justify-end rounded-lg bg-red-300"
             key={character.id}
             value={character.id}
           >
             <img
-              className=" h-16 w-1/3 bg-yellow-300"
+              className=" size-32 bg-yellow-300"
               src={character.character_image}
             />
-            <p className=" pl-6 text-center">{character.character_name}</p>
+            <p className=" mx-auto  w-full p-2 text-center">
+              {character.character_name}
+            </p>
           </li>
         ))}
         <button
