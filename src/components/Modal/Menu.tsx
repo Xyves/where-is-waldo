@@ -1,10 +1,18 @@
 import { useCharacters } from 'components/CharactersContext'
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 
-export default function ModalMenu({ toggleState }) {
+export default function ModalMenu({ toggleState, coords }) {
   const { characters, loading, error } = useCharacters()
+
   return (
-    <ul className=" absolute  bg-blue-900 p-4">
+    <ul
+      className={'  absolute bg-blue-900 p-4 '}
+      style={{
+        left: `${coords[0] + 60}px`,
+        top: `${coords[1] + -200}px`,
+        position: 'absolute'
+      }}
+    >
       <form action="" className="flex flex-col p-2 ">
         {characters?.map((character) => (
           <li
