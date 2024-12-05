@@ -14,7 +14,7 @@ function App() {
     setModalIsOpen((prevState) => !prevState)
   }
   const handleClick = (e) => {
-    const newCoords = [e.pageX, e.pageY]
+    const newCoords = [e.nativeEvent.offsetX, e.nativeEvent.offsetY]
     setCoords(newCoords)
   }
 
