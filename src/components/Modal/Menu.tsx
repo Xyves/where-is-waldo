@@ -1,5 +1,5 @@
 import { useCharacters } from 'components/CharactersContext'
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 export default function ModalMenu({ toggleState, coords }) {
   const { characters, loading, error } = useCharacters()
@@ -12,6 +12,7 @@ export default function ModalMenu({ toggleState, coords }) {
         top: `${coords[1] + -200}px`,
         position: 'absolute'
       }}
+      onClick={(e) => e.stopPropagation()}
     >
       <form action="" className="flex flex-col p-2 ">
         {characters?.map((character) => (
