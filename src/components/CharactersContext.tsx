@@ -34,7 +34,9 @@ export const CharacterProvider: React.FC<{ children: ReactNode }> = ({
     const loadCharacters = async () => {
       try {
         const response = await fetch3Characters()
-        setCharacters(response)
+        setCharacters(
+          response.map((character) => ({ ...character, marked: false }))
+        )
       } catch (err: any) {
         console.error(err)
         setError(err)
