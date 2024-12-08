@@ -1,4 +1,3 @@
-import React from 'react'
 import 'primeicons/primeicons.css'
 
 export default function Footer() {

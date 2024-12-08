@@ -1,4 +1,3 @@
-import React from 'react'
 import Timer from './Timer'
 import CharacterList from './CharacterList'
 export default function Navbar() {
