@@ -48,14 +48,20 @@ export const CharacterProvider: React.FC<{ children: ReactNode }> = ({
   }, [])
 
   const toggleMarked = (id: string) => {
-    setCharacters(
-      (prev) =>
-        prev?.map((character) =>
-          character.id === id
-            ? { ...character, marked: !character.marked }
-            : character
-        ) || null
-    )
+    setCharacters((prev) => {
+      if (!prev) {
+        console.warn('Characters list is null or undefined.')
+        return null
+      }
+
+      const updatedCharacters = prev.map((character) =>
+        character.id === id
+          ? { ...character, marked: !character.marked }
+          : character
+      )
+
+      return updatedCharacters
+    })
   }
 
   return (
