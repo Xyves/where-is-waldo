@@ -5,6 +5,7 @@ import ModalMenu from './Modal/Menu'
 import { useState } from 'react'
 import { CharacterProvider } from './CharactersContext'
 import { calculateCoords } from 'utils'
+import TimerClock from './Timer'
 
 function App() {
   const [isModalOpen, setModalIsOpen] = useState(false)
@@ -23,22 +24,24 @@ function App() {
 
   return (
     <CharacterProvider>
-      <div
-        className="game relative"
-        onClick={(e) => {
-          toggleState()
-          handleClick(e)
-        }}
-      >
-        <img src="main-robotcity.webp" className=" h-auto w-full " alt="" />
-        <Navbar />
-        {isModalOpen ? (
-          <ModalMenu toggleState={toggleState} coords={coords} />
-        ) : null}
+      <TimerClock>
+        <div
+          className="game relative"
+          onClick={(e) => {
+            toggleState()
+            handleClick(e)
+          }}
+        >
+          <img src="main-robotcity.webp" className=" h-auto w-full " alt="" />
+          <Navbar />
+          {isModalOpen ? (
+            <ModalMenu toggleState={toggleState} coords={coords} />
+          ) : null}
 
-        <CharacterList />
-        <Footer />
-      </div>
+          <CharacterList />
+          <Footer />
+        </div>
+      </TimerClock>
     </CharacterProvider>
   )
 }
