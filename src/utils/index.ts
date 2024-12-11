@@ -34,3 +34,24 @@ export async function fetch3Characters() {
     return null
   }
 }
+export async function postScore(username, time) {
+  try {
+    const response = await fetch(
+      'https://where-is-waldo-backend-production-9a1d.up.railway.app/api/scoreboard',
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, time })
+      }
+    )
+    const data = await response.json()
+    if (response.ok) {
+      window.location.href = '/scoreboard'
+    } else {
+      console.error(data.message || 'Score submition failed')
+    }
+  } catch (e) {
+    console.error('An error occurred:', e)
+    return null
+  }
+}
