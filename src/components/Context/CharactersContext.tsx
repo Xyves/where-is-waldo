@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useEffect, useState } from 'react'
+import React, {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState
+} from 'react'
 import { fetch3Characters } from 'utils'
 
 interface Character {
@@ -11,24 +17,38 @@ interface Character {
 }
 
 interface CharacterContextType {
-  characters: Character[] | null
+  characters: Character[]
   loading: boolean
   error: string | null
-  toggleMarked: (id: string) => void
+  setCharacters: () => {}
+  toggleMarked: () => {}
 }
 const CharacterContext = createContext<CharacterContextType>({
-  characters: null,
+  characters: [],
   loading: true,
   error: null,
+  markCharacter: () => {},
   toggleMarked: () => {}
 })
 
-export const CharacterProvider: React.FC<{ children: ReactNode }> = ({
-  children
-}) => {
-  const [characters, setCharacters] = useState<Character[] | null>(null)
+export const CharacterProvider: React.FC<{
+  children: ReactNode
+}> = ({ children }) => {
+  const [characters, setCharacters] = useState<Character[]>([])
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
+  const toggleMarked = (id) => {
+    setCharacters((prev) =>
+      prev.map((char) => (char.id === id ? { ...char, marked: true } : char))
+    )
+    console.log(characters)
+    const everyCharMarked = characters?.every((obj) => obj.marked)
+    if (everyCharMarked) {
+      console.log('All characters marked. Ending game...')
+    }
+  }
+
+  // Log showDialog after it's updated
 
   useEffect(() => {
     const loadCharacters = async () => {
@@ -47,26 +67,15 @@ export const CharacterProvider: React.FC<{ children: ReactNode }> = ({
     loadCharacters()
   }, [])
 
-  const toggleMarked = (id: string) => {
-    setCharacters((prev) => {
-      if (!prev) {
-        console.warn('Characters list is null or undefined.')
-        return null
-      }
-
-      const updatedCharacters = prev.map((character) =>
-        character.id === id
-          ? { ...character, marked: !character.marked }
-          : character
-      )
-
-      return updatedCharacters
-    })
-  }
-
   return (
     <CharacterContext.Provider
-      value={{ characters, loading, error, toggleMarked }}
+      value={{
+        characters,
+        loading,
+        error,
+        setCharacters,
+        toggleMarked
+      }}
     >
       {children}
     </CharacterContext.Provider>
