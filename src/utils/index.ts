@@ -1,4 +1,11 @@
 export function generateCharacters() {}
+
+export function checkCharacterRange(hero, coords) {
+  const isWithinRange =
+    Math.abs(hero.coordinateX - coords.x) <= 950 &&
+    Math.abs(hero.coordinateY - coords.y) <= 950
+  return isWithinRange
+}
 export function calculateCoords(coordsObject: Coords) {
   const { x, y } = coordsObject
   const dpr = window.devicePixelRatio || 1
@@ -9,7 +16,7 @@ export function calculateCoords(coordsObject: Coords) {
   const newCoords = {}
   newCoords.x = (x / userResolution.x) * 1920
   newCoords.y = (y / userResolution.y) * 1080
-  console.log('New cords ', newCoords)
+  // console.log('New cords ', newCoords)
   return newCoords
 }
 type Coords = {
