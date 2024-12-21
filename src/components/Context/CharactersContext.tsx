@@ -33,19 +33,25 @@ const CharacterContext = createContext<CharacterContextType>({
 
 export const CharacterProvider: React.FC<{
   children: ReactNode
-}> = ({ children }) => {
+}> = ({ children, gameActive, setGameActive }) => {
   const [characters, setCharacters] = useState<Character[]>([])
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
   const toggleMarked = (id) => {
-    setCharacters((prev) =>
-      prev.map((char) => (char.id === id ? { ...char, marked: true } : char))
-    )
-    console.log(characters)
-    const everyCharMarked = characters?.every((obj) => obj.marked)
-    if (everyCharMarked) {
-      console.log('All characters marked. Ending game...')
-    }
+    setCharacters((prev) => {
+      const updatedCharacters = prev.map((char) =>
+        char.id === id ? { ...char, marked: true } : char
+      )
+
+      // Use the updated array to check if all characters are marked
+      const everyCharMarked = updatedCharacters.every((obj) => obj.marked)
+
+      if (everyCharMarked) {
+        setGameActive(false) // End the game
+      }
+
+      return updatedCharacters
+    })
   }
 
   // Log showDialog after it's updated
@@ -81,4 +87,5 @@ export const CharacterProvider: React.FC<{
     </CharacterContext.Provider>
   )
 }
+
 export const useCharacters = () => useContext(CharacterContext)
