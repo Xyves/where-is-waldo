@@ -2,8 +2,8 @@ export function generateCharacters() {}
 
 export function checkCharacterRange(hero, coords) {
   const isWithinRange =
-    Math.abs(hero.coordinateX - coords.x) <= 950 &&
-    Math.abs(hero.coordinateY - coords.y) <= 950
+    Math.abs(hero.coordinateX - coords.x) <= 70 &&
+    Math.abs(hero.coordinateY - coords.y) <= 70
   return isWithinRange
 }
 export function calculateCoords(coordsObject: Coords) {
@@ -16,7 +16,6 @@ export function calculateCoords(coordsObject: Coords) {
   const newCoords = {}
   newCoords.x = (x / userResolution.x) * 1920
   newCoords.y = (y / userResolution.y) * 1080
-  // console.log('New cords ', newCoords)
   return newCoords
 }
 type Coords = {
@@ -55,7 +54,26 @@ export async function postScore(username, time) {
     if (response.ok) {
       window.location.href = '/scoreboard'
     } else {
-      console.error(data.message || 'Score submition failed')
+      console.error(data.error || 'Score submission failed')
+      alert(data.error || 'An error occurred while submitting the score.')
+    }
+  } catch (e) {
+    console.error('An error occurred:', e)
+    return null
+  }
+}
+export async function fetchScores() {
+  try {
+    const response = await fetch(
+      'https://where-is-waldo-backend-production-9a1d.up.railway.app/api/scoreboard',
+      { method: 'GET', headers: { 'Content-Type': 'application/json' } }
+    )
+    const data = await response.json()
+    if (response.ok) {
+      return data
+    } else {
+      console.error(data.message || 'Something went wrong')
+      return null
     }
   } catch (e) {
     console.error('An error occurred:', e)
