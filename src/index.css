@@ -132,7 +132,6 @@ html {
 }
 
 .game {
-  cursor: url('public/dual-circle-crosshairs-hi.png');
   background-image: url('/main-robotcity.webp');
   background-size: cover;
   background-repeat: no-repeat;
@@ -140,4 +139,7 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+body {
+  cursor: url('/circle-crosshair.png'), auto;
 }
