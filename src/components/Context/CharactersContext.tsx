@@ -43,18 +43,15 @@ export const CharacterProvider: React.FC<{
         char.id === id ? { ...char, marked: true } : char
       )
 
-      // Use the updated array to check if all characters are marked
       const everyCharMarked = updatedCharacters.every((obj) => obj.marked)
-
+      // End game if everyCharMarked is true
       if (everyCharMarked) {
-        setGameActive(false) // End the game
+        setGameActive(false)
       }
 
       return updatedCharacters
     })
   }
-
-  // Log showDialog after it's updated
 
   useEffect(() => {
     const loadCharacters = async () => {

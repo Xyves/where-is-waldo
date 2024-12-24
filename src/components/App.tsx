@@ -1,4 +1,3 @@
-import React from 'react'
 import Game from './Game'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Scoreboard from './Modals/Scoreboard'

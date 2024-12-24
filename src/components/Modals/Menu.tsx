@@ -1,47 +1,18 @@
 import { useCharacters } from 'components/Context/CharactersContext'
-import React, { useEffect, useRef, useState } from 'react'
-import CreateScore from './CreateScore'
+import { checkCharacterRange } from 'utils'
 
-export default function ModalMenu({ toggleState, coords }) {
-  const { characters, loading, error, toggleMarked } = useCharacters()
-  const [showDialog, setShowDialog] = useState(false)
+export default function ModalMenu({ toggleState, coords, gameActive }) {
+  const { characters, toggleMarked } = useCharacters()
+
   const handleClick = async (heroId: string) => {
     const hero = characters?.find((character) => character.id === heroId)
-    if (!hero) {
-      return null
-    }
-    const isWithinRange =
-      Math.abs(hero.coordinateX - coords.x) <= 450 &&
-      Math.abs(hero.coordinateY - coords.y) <= 450
-    if (!isWithinRange) {
-      return null
-    }
-    console.log('marked', heroId)
+    if (!hero) return null
+    console.log(coords)
+    const isCharacterWithinRange = checkCharacterRange(hero, coords)
+    if (!isCharacterWithinRange) return null
     toggleMarked(heroId)
-    setTimeout(() => {
-      isGameRunning()
-    }, 0)
-    if (!isGameRunning) {
-      setShowDialog(true)
-    }
   }
-  const isGameRunning = () => {
-    if (characters) {
-      characters.forEach((obj) => {
-        console.log(obj, obj.marked)
-      })
-      const gameActive = characters?.every((obj) => obj.marked)
-      console.log(gameActive)
-      return gameActive
-    }
-  }
-
-  {
-    if (showDialog)
-      return (
-        <CreateScore showDialog={showDialog} setShowDialog={setShowDialog} />
-      )
-  }
+  if (!gameActive) return null
 
   return (
     <ul
@@ -56,7 +27,7 @@ export default function ModalMenu({ toggleState, coords }) {
     >
       {characters?.map((character) => (
         <li
-          className="mx-2  my-4 flex flex-col justify-end rounded-lg border-2 border-solid border-gray-800 bg-white"
+          className="mx-2  my-4 flex flex-col justify-end rounded-lg border-2 border-solid border-yellow-600 bg-white"
           key={character.id}
           value={character.id}
         >
@@ -71,15 +42,12 @@ export default function ModalMenu({ toggleState, coords }) {
               className=" size-32 bg-[#DEFFF2]"
               src={character.character_image}
             />
-            <p className=" mx-auto  w-full border-t-2 border-solid border-gray-600 p-2 text-center">
+            <p className=" mx-auto  w-full border-t-2 border-solid border-yellow-600 p-2 text-center">
               {character.character_name}
             </p>
           </button>
         </li>
       ))}
-      {/* <button className="bg-red-50 text-lg text-red-400" onClick={toggleState}>
-        X
-      </button> */}
     </ul>
   )
 }

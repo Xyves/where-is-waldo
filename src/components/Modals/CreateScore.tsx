@@ -1,12 +1,6 @@
-import { createContext, useEffect, useRef, useState } from 'react'
 import { postScore } from 'utils'
 import { useTimer } from 'components/Context/TimerContext'
-import React from 'react'
-export default function CreateScore({
-  showDialog,
-  setShowDialog,
-  setGameActive
-}) {
+export default function CreateScore({ setShowDialog, setGameActive }) {
   const { time } = useTimer()
   const submitForm = async (e) => {
     e.preventDefault()
