@@ -1,6 +1,9 @@
+import { heroInterface } from 'interface'
 import React, {
   createContext,
+  Dispatch,
   ReactNode,
+  SetStateAction,
   useContext,
   useEffect,
   useState
@@ -20,24 +23,25 @@ interface CharacterContextType {
   characters: Character[]
   loading: boolean
   error: string | null
-  setCharacters: () => {}
-  toggleMarked: () => {}
+  setCharacters: (characters: Character[]) => void
+  toggleMarked: (id: string) => void
 }
 const CharacterContext = createContext<CharacterContextType>({
   characters: [],
   loading: true,
   error: null,
-  markCharacter: () => {},
+  setCharacters: () => {},
   toggleMarked: () => {}
 })
 
 export const CharacterProvider: React.FC<{
   children: ReactNode
-}> = ({ children, gameActive, setGameActive }) => {
+  setGameActive: Dispatch<SetStateAction<boolean>>
+}> = ({ children, setGameActive }) => {
   const [characters, setCharacters] = useState<Character[]>([])
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
-  const toggleMarked = (id) => {
+  const toggleMarked = (id: string) => {
     setCharacters((prev) => {
       const updatedCharacters = prev.map((char) =>
         char.id === id ? { ...char, marked: true } : char
@@ -57,9 +61,13 @@ export const CharacterProvider: React.FC<{
     const loadCharacters = async () => {
       try {
         const response = await fetch3Characters()
-        setCharacters(
-          response.map((character) => ({ ...character, marked: false }))
+        const updatedCharacters: heroInterface[] = response.map(
+          (character: heroInterface) => ({
+            ...character,
+            marked: false
+          })
         )
+        setCharacters(updatedCharacters)
       } catch (err: any) {
         console.error(err)
         setError(err)

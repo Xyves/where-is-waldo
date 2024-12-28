@@ -1,7 +1,15 @@
 import { useCharacters } from 'components/Context/CharactersContext'
 import { checkCharacterRange } from 'utils'
 
-export default function ModalMenu({ toggleState, coords, gameActive }) {
+export default function ModalMenu({
+  toggleState,
+  coords,
+  gameActive
+}: {
+  toggleState: any
+  coords: { x: number; y: number }
+  gameActive: boolean
+}) {
   const { characters, toggleMarked } = useCharacters()
 
   const handleClick = async (heroId: string) => {

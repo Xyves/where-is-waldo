@@ -1,3 +1,4 @@
+import { scoreInterface } from 'interface'
 import { useEffect, useState } from 'react'
 import { fetchScores } from 'utils'
 
@@ -7,7 +8,10 @@ export default function Scoreboard() {
     const loadScoreboard = async () => {
       try {
         const response = await fetchScores()
-        await setScores(response.results.map((score) => ({ ...score })))
+        console.log(response.results)
+        await setScores(
+          response.results.map((score: scoreInterface) => ({ ...score }))
+        )
       } catch (err: any) {
         console.error(err)
       }
@@ -25,7 +29,7 @@ export default function Scoreboard() {
           </tr>
         </thead>
         <tbody className="">
-          {scores?.map((score, index) => (
+          {scores?.map((score: scoreInterface, index) => (
             <ScoreRow score={score} key={score.id} index={index + 1} />
           ))}
         </tbody>
@@ -33,7 +37,13 @@ export default function Scoreboard() {
     </div>
   )
 }
-const ScoreRow = ({ score, index }) => {
+const ScoreRow = ({
+  score,
+  index
+}: {
+  score: scoreInterface
+  index: number
+}) => {
   const { username, time } = score
   const formattedTime = `${Math.floor(time / 60000)}m ${Math.floor((time % 60000) / 1000)}s ${time % 1000 ? Math.floor((time % 1000) / 10) + 'ms' : ''}`
   return (

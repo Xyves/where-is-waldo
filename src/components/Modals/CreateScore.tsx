@@ -1,8 +1,14 @@
 import { postScore } from 'utils'
 import { useTimer } from 'components/Context/TimerContext'
-export default function CreateScore({ setShowDialog, setGameActive }) {
+export default function CreateScore({
+  setShowDialog,
+  setGameActive
+}: {
+  setShowDialog: any
+  setGameActive: any
+}) {
   const { time } = useTimer()
-  const submitForm = async (e) => {
+  const submitForm = async (e: any) => {
     e.preventDefault()
     const username = e.target.elements.username.value
     postScore(username, time)

@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, ReactNode, useContext, useState } from 'react'
 interface Timer {
   time: number
   timerRunning: boolean
@@ -15,7 +15,9 @@ const TimerContext = createContext<Timer>({
   loading: true,
   error: null
 })
-export const TimerProvider = ({ children }) => {
+export const TimerProvider: React.FC<{
+  children: ReactNode
+}> = ({ children }) => {
   const [time, setTime] = useState<number>(0)
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)

@@ -10,12 +10,12 @@ import CreateScore from './Modals/CreateScore'
 import Timer from './Timer'
 
 function Game() {
-  const [isModalOpen, setModalIsOpen] = useState(false)
+  const [isModalOpen, setModalIsOpen] = useState<boolean>(false)
   const { setTimerRunning } = useTimer()
   const [coords, setCoords] = useState({ x: 0, y: 0 })
-  const [gameActive, setGameActive] = useState(true)
-  const [showDialog, setShowDialog] = useState(false)
-  const [timerActive, setTimerActive] = useState(true)
+  const [gameActive, setGameActive] = useState<boolean>(true)
+  const [showDialog, setShowDialog] = useState<boolean>(false)
+  const [timerActive, setTimerActive] = useState<boolean>(true)
   const toggleState = () => {
     setModalIsOpen((prevState) => !prevState)
   }
@@ -31,7 +31,7 @@ function Game() {
     }
   }, [gameActive, setTimerRunning])
 
-  const handleClick = (e) => {
+  const handleClick = (e: any) => {
     const coordinates = { x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY }
     const newCoords = calculateCoords(coordinates)
     setCoords(newCoords)
@@ -39,7 +39,7 @@ function Game() {
 
   return (
     <TimerProvider>
-      <CharacterProvider gameActive={gameActive} setGameActive={setGameActive}>
+      <CharacterProvider setGameActive={setGameActive}>
         <div
           className="game relative"
           onClick={(e) => {
@@ -49,7 +49,7 @@ function Game() {
         >
           <img src="main-robotcity.webp" className=" h-auto w-full " alt="" />
           <Navbar>
-            <Timer timerActive={timerActive} setTimerActive={setTimerActive} />
+            <Timer timerActive={timerActive} />
             <CharacterList />
           </Navbar>
           {isModalOpen ? (
@@ -57,15 +57,13 @@ function Game() {
               toggleState={toggleState}
               coords={coords}
               gameActive={gameActive}
-              setGameActive={setGameActive}
             />
           ) : null}
-          <CharacterList gameActive={gameActive} />
+          <CharacterList />
           <Footer />
         </div>
         {showDialog && (
           <CreateScore
-            showDialog={showDialog}
             setShowDialog={setShowDialog}
             setGameActive={setGameActive}
           />

@@ -1,6 +1,12 @@
+import { heroInterface } from 'interface'
+
 export function generateCharacters() {}
 
-export function checkCharacterRange(hero, coords) {
+export function checkCharacterRange(
+  hero: heroInterface,
+  coords: { x: number; y: number }
+) {
+  console.log('hero', hero)
   const isWithinRange =
     Math.abs(hero.coordinateX - coords.x) <= 70 &&
     Math.abs(hero.coordinateY - coords.y) <= 70
@@ -13,7 +19,7 @@ export function calculateCoords(coordsObject: Coords) {
     x: window.screen.width * dpr,
     y: window.screen.height * dpr
   }
-  const newCoords = {}
+  const newCoords: { x: number; y: number } = { x: 0, y: 0 }
   newCoords.x = (x / userResolution.x) * 1920
   newCoords.y = (y / userResolution.y) * 1080
   return newCoords
@@ -40,7 +46,7 @@ export async function fetch3Characters() {
     return null
   }
 }
-export async function postScore(username, time) {
+export async function postScore(username: string, time: number) {
   try {
     const response = await fetch(
       'https://where-is-waldo-backend-production-9a1d.up.railway.app/api/scoreboard',
