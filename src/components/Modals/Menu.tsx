@@ -15,7 +15,6 @@ export default function ModalMenu({
   const handleClick = async (heroId: string) => {
     const hero = characters?.find((character) => character.id === heroId)
     if (!hero) return null
-    console.log(coords)
     const isCharacterWithinRange = checkCharacterRange(hero, coords)
     if (!isCharacterWithinRange) return null
     toggleMarked(heroId)

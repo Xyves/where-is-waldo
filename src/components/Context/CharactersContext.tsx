@@ -48,7 +48,7 @@ export const CharacterProvider: React.FC<{
       )
 
       const everyCharMarked = updatedCharacters.every((obj) => obj.marked)
-      // End game if everyCharMarked is true
+      // End game if every character's marked value is true
       if (everyCharMarked) {
         setGameActive(false)
       }

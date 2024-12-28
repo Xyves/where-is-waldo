@@ -8,6 +8,7 @@ export interface heroInterface {
   coordinateX: number
   coordinateY: number
 }
+F
 export type Props = {
   children:
     | string

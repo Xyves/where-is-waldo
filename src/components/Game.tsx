@@ -22,7 +22,7 @@ function Game() {
 
   useEffect(() => {
     if (gameActive) {
-      setTimerActive(true) // Start the timer when game is active
+      setTimerActive(true)
       document.body.style.height = 'auto'
     } else {
       setTimerActive(false)

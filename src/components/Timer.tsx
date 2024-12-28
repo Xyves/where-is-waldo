@@ -10,11 +10,9 @@ export default function Timer({ timerActive }: { timerActive: boolean }) {
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null
 
-    // If the timer is running, start the interval
     if (timerActive) {
       interval = setInterval(() => {
-        // Correct usage of setTime with updater function
-        setTime((prevTime: number) => prevTime + 10) // prevTime will be inferred as `number` correctly
+        setTime((prevTime: number) => prevTime + 10)
       }, 10)
     } else {
       if (interval) {
@@ -22,7 +20,7 @@ export default function Timer({ timerActive }: { timerActive: boolean }) {
       }
     }
 
-    // Cleanup the interval when the component unmounts or when timerRunning changes
+    // Cleanup the interval on component unmounts / timerRunning is false
     return () => {
       if (interval) {
         clearInterval(interval)

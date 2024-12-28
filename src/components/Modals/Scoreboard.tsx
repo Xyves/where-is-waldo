@@ -8,7 +8,6 @@ export default function Scoreboard() {
     const loadScoreboard = async () => {
       try {
         const response = await fetchScores()
-        console.log(response.results)
         await setScores(
           response.results.map((score: scoreInterface) => ({ ...score }))
         )

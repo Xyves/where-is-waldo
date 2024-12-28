@@ -6,7 +6,6 @@ export function checkCharacterRange(
   hero: heroInterface,
   coords: { x: number; y: number }
 ) {
-  console.log('hero', hero)
   const isWithinRange =
     Math.abs(hero.coordinateX - coords.x) <= 70 &&
     Math.abs(hero.coordinateY - coords.y) <= 70
