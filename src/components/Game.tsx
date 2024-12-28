@@ -32,9 +32,15 @@ function Game() {
   }, [gameActive, setTimerRunning])
 
   const handleClick = (e: any) => {
-    const coordinates = { x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY }
-    const newCoords = calculateCoords(coordinates)
-    setCoords(newCoords)
+    const rect = e.target.getBoundingClientRect() // Get the element's bounding box
+    const scaleX = e.target.naturalWidth / rect.width // Horizontal scaling factor
+    const scaleY = e.target.naturalHeight / rect.height // Vertical scaling factor
+
+    const coordinates = {
+      x: Math.round((e.clientX - rect.left) * scaleX), // Normalize for natural width
+      y: Math.round((e.clientY - rect.top) * scaleY)
+    }
+    setCoords(coordinates)
   }
 
   return (

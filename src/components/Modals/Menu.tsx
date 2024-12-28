@@ -24,7 +24,7 @@ export default function ModalMenu({
   return (
     <ul
       className={
-        'absolute rounded-lg border-2 border-solid border-gray-400 bg-[#4b5557] p-3 opacity-95'
+        'absolute rounded-lg border-2 border-solid border-gray-400 bg-[#1e293b]   p-3 opacity-95 '
       }
       style={{
         left: `${coords.x + 60}px`,
@@ -34,7 +34,7 @@ export default function ModalMenu({
     >
       {characters?.map((character) => (
         <li
-          className="mx-2  my-4 flex flex-col justify-end rounded-lg border-2 border-solid border-yellow-600 bg-white"
+          className="mx-2   mb-10 flex flex-col justify-end rounded-lg border-2 border-solid border-yellow-600 bg-white text-white"
           key={character.id}
           value={character.id}
         >
@@ -44,9 +44,10 @@ export default function ModalMenu({
               handleClick(character.id)
               toggleState()
             }}
+            className="size-24 "
           >
             <img
-              className=" size-32 bg-[#DEFFF2]"
+              className=" size-full bg-[#DEFFF2]"
               src={character.character_image}
             />
             <p className=" mx-auto  w-full border-t-2 border-solid border-yellow-600 p-2 text-center">
