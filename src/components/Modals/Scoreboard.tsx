@@ -18,7 +18,7 @@ export default function Scoreboard() {
     loadScoreboard()
   }, [])
   return (
-    <div className="flex size-full  justify-center bg-[#0b0d22] py-6">
+    <div className="flex justify-center bg-[#0b0d22] py-6">
       <table className="flex w-80 border-collapse flex-col justify-center text-2xl text-white">
         <thead>
           <tr className="  bg-[#1e293b] *:p-3 ">
