@@ -1,80 +1,23 @@
-![reactjs-vite-tailwindcss-boilerplate](https://user-images.githubusercontent.com/16243531/217138979-b854309c-4742-4275-a705-f9fec5158217.jpg)
+## Try It Out Now: [Live](https://where-is-waldo-xyves.netlify.app/)
 
-# React Tailwindcss Boilerplate build with Vite
+Welcome to **Where's Waldo Game**, an exciting game where you embark on a search for hidden characters within beautifully crafted scene. Your mission? Find all the characters as quickly as possible and claim your spot on the leaderboard! Ready for the challenge?
 
-This is a boilerplate build with Vite, React 18, TypeScript, Vitest, Testing Library, TailwindCSS 3, Eslint and Prettier.
+## 🚀 Built With
 
-## What is inside?
+- **React** – The heart of the app, powering dynamic and interactive UI.
+- **Javascript** – Ensures type safety and robust code.
+- **Vite** – Ultra-fast build tool for an optimized dev experience.
+- **Prisma** – Powering user authentication, real-time database, and leaderboard.
+- **React Router** – Seamless navigation across different app views.
+- **TailwindCSS** – A utility-first CSS framework for efficient styling.
 
-This project uses many tools like:
+## ✨ Features
 
-- [Vite](https://vitejs.dev)
-- [ReactJS](https://reactjs.org)
-- [TypeScript](https://www.typescriptlang.org)
-- [Vitest](https://vitest.dev)
-- [Testing Library](https://testing-library.com)
-- [Tailwindcss](https://tailwindcss.com)
-- [Eslint](https://eslint.org)
-- [Prettier](https://prettier.io)
+- **Timer** – Track your playtime as you race against the clock.
+- **Character Found Notifications** – Feedback on whether you've located a character.
 
-## Getting Started
+### 🌐 Prisma Integration
 
-### Install
-
-Create the project.
-
-```bash
-pnpm dlx degit joaopaulomoraes/reactjs-vite-tailwindcss-boilerplate my-app
-```
-
-Access the project directory.
-
-```bash
-cd my-app
-```
-
-Install dependencies.
-
-```bash
-pnpm install
-```
-
-Serve with hot reload at <http://localhost:5173>.
-
-```bash
-pnpm run dev
-```
-
-### Lint
-
-```bash
-pnpm run lint
-```
-
-### Typecheck
-
-```bash
-pnpm run typecheck
-```
-
-### Build
-
-```bash
-pnpm run build
-```
-
-### Test
-
-```bash
-pnpm run test
-```
-
-View and interact with your tests via UI.
-
-```bash
-pnpm run test:ui
-```
-
-## License
-
-This project is licensed under the MIT License.
+- **Leaderboard** – Submit your score to PostgreSQL db, where your time, username, and submission date are recorded.
+- **Character Validation** – Verify if the character clicked is correct using Prisma on backend.
+- **Leaderboard Queries** – Efficiently fetch and display game scores sorted by fastest times.
