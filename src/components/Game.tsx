@@ -8,6 +8,7 @@ import { calculateCoords } from 'utils'
 import { TimerProvider, useTimer } from './Context/TimerContext'
 import CreateScore from './Modals/CreateScore'
 import Timer from './Timer'
+import ScoreboardModal from './ScoreboardModal'
 
 function Game() {
   const [isModalOpen, setModalIsOpen] = useState<boolean>(false)
@@ -67,6 +68,7 @@ function Game() {
           ) : null}
           <CharacterList />
           <Footer />
+          <ScoreboardModal />
         </div>
         {showDialog && (
           <CreateScore
