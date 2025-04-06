@@ -22,7 +22,7 @@ export default function Scoreboard() {
       <table className="flex w-80 border-collapse flex-col justify-center text-2xl text-white">
         <thead>
           <tr className="  bg-[#1e293b] *:p-3 ">
-            <th className=" w-1/5 "> Place</th>
+            <th className="w-1/5 "> Place</th>
             <th>Player</th>
             <th className="w-1/2">Time</th>
           </tr>

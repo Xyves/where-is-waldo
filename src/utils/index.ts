@@ -1,5 +1,4 @@
 import { heroInterface } from 'interface'
-
 export function generateCharacters() {}
 
 export function checkCharacterRange(
@@ -30,8 +29,11 @@ type Coords = {
 export async function fetch3Characters() {
   try {
     const response = await fetch(
-      'https://where-is-waldo-backend-production-9a1d.up.railway.app/api/characters',
-      { method: 'GET', headers: { 'Content-Type': 'application/json' } }
+      `${import.meta.env.VITE_DATABASE_URL}/api/characters`,
+      {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+      }
     )
     const data = await response.json()
     if (response.ok) {
@@ -48,7 +50,7 @@ export async function fetch3Characters() {
 export async function postScore(username: string, time: number) {
   try {
     const response = await fetch(
-      'https://where-is-waldo-backend-production-9a1d.up.railway.app/api/scoreboard',
+      `${import.meta.env.VITE_DATABASE_URL}/api/scoreboard`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -70,8 +72,11 @@ export async function postScore(username: string, time: number) {
 export async function fetchScores() {
   try {
     const response = await fetch(
-      'https://where-is-waldo-backend-production-9a1d.up.railway.app/api/scoreboard',
-      { method: 'GET', headers: { 'Content-Type': 'application/json' } }
+      `${import.meta.env.VITE_DATABASE_URL}/api/scoreboard`,
+      {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+      }
     )
     const data = await response.json()
     if (response.ok) {
